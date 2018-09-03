@@ -1,0 +1,7 @@
+Apache Pig - Load data from a Hive table into a Pig relation
+
+>Pig -useHcatalog // will launch the Pig with Hcatalog mode
+grunt> Customer_details = LOAD 'retail_db.customer_item' USING org.apache.hcatalog.pig.HcatLoader(); //to load the data
+grunt> describe customer_details; //to describe the data in pig from hive table
+grunt> 
+  
