@@ -1,0 +1,11 @@
+How to import the data from rdbms to hadoop using sqoop for 10 tables out of 100 tables in job
+How many tables u have worked on for swoop.importing
+
+How to write a UDF in pig and how to register it incase the class has many functions in it
+
+Difference between cogroup n group in hive
+How to find max sal of a dept in pig
+Based on what how many buckets we have to decide?
+What will happen when we import data to a dynamic partition table if source table is empty
+
+What is default partitioning in hive?
