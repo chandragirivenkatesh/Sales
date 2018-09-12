@@ -5,6 +5,13 @@ How to write a UDF in pig and how to register it incase the class has many funct
 
 Difference between cogroup n group in hive
 How to find max sal of a dept in pig
+
+A = load data 'a.txt' using PigStorage(',') (id:int, name:chararray,salary:int, Dept:int)
+B = Group A by A.dept;
+C = foreach B generate group,max(A.sal);
+dump C;
+
+
 Based on what how many buckets we have to decide?
 What will happen when we import data to a dynamic partition table if source table is empty
 
