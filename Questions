@@ -3,9 +3,12 @@ How many tables u have worked on for swoop.importing
 
 How to write a UDF in pig and how to register it incase the class has many functions in it
 
-Difference between cogroup n group in hive
-How to find max sal of a dept in pig
+Difference between cogroup n group in pig
+The GROUP and COGROUP operators are identical. Both operators work with one or more relations. 
+For readability GROUP is used in statements involving one relation and COGROUP is used in statements involving two or more relations. 
+You can COGROUP up to but no more than 127 relations at a time.
 
+How to find max sal of a dept in pig
 A = load data 'a.txt' using PigStorage(',') (id:int, name:chararray,salary:int, Dept:int)
 B = Group A by A.dept;
 C = foreach B generate group,max(A.sal);
@@ -13,6 +16,11 @@ dump C;
 
 
 Based on what how many buckets we have to decide?
+One thing buckets are used for is to increase load performance
+SELECT performance ( predicate pushdown )
+Join Performance ( bucket join )
+Some sample operations can get faster with buckets.
+
 What will happen when we import data to a dynamic partition table if source table is empty
 
 What is default partitioning in hive?
