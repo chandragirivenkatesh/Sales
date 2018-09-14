@@ -24,3 +24,14 @@ Some sample operations can get faster with buckets.
 What will happen when we import data to a dynamic partition table if source table is empty
 
 What is default partitioning in hive?
+
+What is serialisation?
+What is difference between arraylist n linkedlist?
+What is hdfs archiving?
+How to merge data in hive?
+What is S3 in AWS?
+What is cloudwatch in AWS (scheduling)?
+What is transient and volatile data members in java?
+What is final method in java?
+Can abstract class be made final in java?
+What are checked n unchecked expections?
