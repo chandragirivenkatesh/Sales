@@ -1,57 +1,48 @@
-How to import the data from rdbms to hadoop using sqoop for 10 tables out of 100 tables in job
-How many tables u have worked on for swoop.importing
-
-How to write a UDF in pig and how to register it incase the class has many functions in it
-
-Difference between cogroup n group in pig
-The GROUP and COGROUP operators are identical. Both operators work with one or more relations. 
-For readability GROUP is used in statements involving one relation and COGROUP is used in statements involving two or more relations. 
-You can COGROUP up to but no more than 127 relations at a time.
-
-How to find max sal of a dept in pig
-A = load data 'a.txt' using PigStorage(',') (id:int, name:chararray,salary:int, Dept:int)
-B = Group A by A.dept;
-C = foreach B generate group,max(A.sal);
+1. How to import the data from rdbms to hadoop using sqoop for 10 tables out of 100 tables in job
+2. How many tables u have worked on for sqoop importing
+3.How to write a UDF in pig and how to register it in case the class has many functions in it
+4. Difference between cogroup n group in pig
+    The GROUP and COGROUP operators are identical. Both operators work with one or more relations. 
+    For readability GROUP is used in statements involving one relation and COGROUP is used in statements involving two or more relations. 
+    You can COGROUP up to but no more than 127 relations at a time.
+5. How to find max sal of a dept in pig
+    A = load data 'a.txt' using PigStorage(',') (id:int, name:chararray,salary:int, Dept:int)
+    B = Group A by A.dept;
+    C = foreach B generate group,max(A.sal);
 dump C;
+6. Based on what how many buckets we have to decide?
+    One thing buckets are used for is to increase load performance
+    SELECT performance ( predicate pushdown )
+    Join Performance ( bucket join )
+    Some sample operations can get faster with buckets.
 
+7. What will happen when we import data to a dynamic partition table if source table is empty
+    Since there is no data, no partition will be created 
+8. What is default partitioning in hive?
+9. What is serialisation?
+    Serialization in Java is a mechanism of writing the state of an object into a byte stream. It is mainly used in Hibernate, RMI, JPA, EJB and JMS technologies. The reverse operation of serialization is called deserialization.
 
-Based on what how many buckets we have to decide?
-One thing buckets are used for is to increase load performance
-SELECT performance ( predicate pushdown )
-Join Performance ( bucket join )
-Some sample operations can get faster with buckets.
-
-What will happen when we import data to a dynamic partition table if source table is empty
-
-What is default partitioning in hive?
-
-What is serialisation?
-What is difference between arraylist n linkedlist?
-What is hdfs archiving?
-How to merge data in hive?
-What is S3 in AWS?
-What is cloudwatch in AWS (scheduling)?
-What is transient and volatile data members in java?
-What is final method in java?
-Can abstract class be made final in java?
-What are checked n unchecked expections?
-Checked exceptions are the exceptions that are checked at compile time. If some code within a method throws a checked exception, 
-then the method must either handle the exception or it must specify the exception using throws keyword.
-Unchecked are the exceptions that are not checked at compiled time. In Java exceptions under Error and RuntimeException classes are unchecked exceptions, everything else under throwable is checked.
-
+10. What is difference between arraylist n linkedlist?
+11. What is hdfs archiving?
+12. How to merge data in hive?
+13. What is S3 in AWS?
+14. What is cloudwatch in AWS (scheduling)?
+15. What is transient and volatile data members in java?
+    By making a variable or field transient in a Class prevents it from being Serialized in Java.  Along with static variables, transient variables are not serialized during Serialization and they are initialized with there default value during deserialization process e.g. an int transient variable is initialized with zero during deserialization in Java. to learn more about transient variable, See What is transient variable in Java.
+    On the other hand volatile variables are used in Concurrent programming in Java. When we declare a variable volatile,  every thread reads its value from main memory and don't used cached value available in every thread stack. volatile variable also prevents compiler from doing reordering which can compromise synchronization. to learn more about volatile variables, read What is volatile variable in Java.  Many Java programmer though know about volatile variables they are not sure where to use volatile modifier in Java. One of the popular example of  using volatile variable is implementing double checked locking in Singleton, where Singleton instance of class is declared volatile in Java.
+16. What is final method in java?
+    A final method cannot be overridden. Which means even though a sub class can call the final method of parent class without any issues but it cannot override it.
+17. Can abstract class be made final in java?
+    No, an abstract class cannot be final, Abstract methods needs to be implemented; therefore it is overridden in the sub class. But by marking final, we are restricting it to override. Compile-time error will be thrown: Error message: The abstract method display in type <abstract-class-name> can only set a visibility modifier, one of public or protected
+18. What are checked n unchecked exceptions?
+    Checked exceptions are the exceptions that are checked at compile time. If some code within a method throws a checked exception, then the method must either handle the exception or it must specify the exception using throws keyword.
+    Unchecked are the exceptions that are not checked at compiled time. In Java exceptions under Error and RuntimeException classes are unchecked exceptions, everything else under throwable is checked.
 DS:
 1. Spark interview Questions with Answers 
-
 http://bigdatascholars.blogspot.com/2018/07/spark-interview-questions.html
-
 2. Bigdata Interview Questions with Answers
-
 http://bigdatascholars.blogspot.com/2018/07/bigdata-interview-questions.html
-
 3.Hive Interview Questions with Answers
-
 http://bigdatascholars.blogspot.com/2018/08/hive-interview-questions-with-answers.html
-
 4.SQOOP Interview Questions with Answers
-
 http://bigdatascholars.blogspot.com/2018/08/sqoop-interview-question-and-answers.html
