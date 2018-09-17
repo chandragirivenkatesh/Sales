@@ -19,6 +19,7 @@ dump C;
 7. What will happen when we import data to a dynamic partition table if source table is empty
     Since there is no data, no partition will be created 
 8. What is default partitioning in hive?
+    When you define a table in Hive with a partitioning column of type STRING, all NULL values within the partitioning column appear as __HIVE_DEFAULT_PARTITION__ in the output of a SELECT from Hive statement
 9. What is serialisation?
     Serialization in Java is a mechanism of writing the state of an object into a byte stream. It is mainly used in Hibernate, RMI, JPA, EJB and JMS technologies. The reverse operation of serialization is called deserialization.
 
