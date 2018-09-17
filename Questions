@@ -35,7 +35,9 @@ What is transient and volatile data members in java?
 What is final method in java?
 Can abstract class be made final in java?
 What are checked n unchecked expections?
-
+Checked exceptions are the exceptions that are checked at compile time. If some code within a method throws a checked exception, 
+then the method must either handle the exception or it must specify the exception using throws keyword.
+Unchecked are the exceptions that are not checked at compiled time. In Java exceptions under Error and RuntimeException classes are unchecked exceptions, everything else under throwable is checked.
 
 DS:
 1. Spark interview Questions with Answers 
