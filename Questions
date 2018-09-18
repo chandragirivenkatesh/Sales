@@ -27,7 +27,14 @@ dump C;
 11. What is hdfs archiving?
 12. How to merge data in hive?
 13. What is S3 in AWS?
+    
+
 14. What is cloudwatch in AWS (scheduling)?
+    Amazon CloudWatch allows developers, system architects, and administrators to monitor their AWS applications in the cloud, in near-real-time. CloudWatch is automatically configured to provide metrics on request counts, latency, and CPU usage. Users also can send their own logs and custom metrics to CloudWatch for monitoring.
+    The data and reports CloudWatch provides lets users keep track of application performance, resource use, operational issues, and constraints. This helps organizations resolve technical issues and streamline operations.
+    CloudWatch is most commonly used with Elastic Compute Cloud (EC2) instances, and can also monitor Amazon Elastic Block Store (EBS) volumes, Elastic Load Balancers (ELBs), and instances of Amazon Relational Database Service (RDS). It also can extend beyond these core services to intake custom data from external sources.
+
+Users choose CloudWatch for its automatic integration with AWS services, its flexibility, and its ability to scale quickly.
 15. What is transient and volatile data members in java?
     By making a variable or field transient in a Class prevents it from being Serialized in Java.  Along with static variables, transient variables are not serialized during Serialization and they are initialized with there default value during deserialization process e.g. an int transient variable is initialized with zero during deserialization in Java. to learn more about transient variable, See What is transient variable in Java.
     On the other hand volatile variables are used in Concurrent programming in Java. When we declare a variable volatile,  every thread reads its value from main memory and don't used cached value available in every thread stack. volatile variable also prevents compiler from doing reordering which can compromise synchronization. to learn more about volatile variables, read What is volatile variable in Java.  Many Java programmer though know about volatile variables they are not sure where to use volatile modifier in Java. One of the popular example of  using volatile variable is implementing double checked locking in Singleton, where Singleton instance of class is declared volatile in Java.
