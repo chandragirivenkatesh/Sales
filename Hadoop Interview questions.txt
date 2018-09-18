@@ -1,0 +1,106 @@
+Hadoop Interview questions
+
+1.	Architecture of project.
+2.	What is Hive.
+3.	Are you incrementally appending the data or overwriting the data.
+4.	Avoid duplicates while loading the data in hive
+Well, hive does not provide row level update/delete; therefore we can avoid the duplicate data while loading the data in base tables. As shown below
+>CREATE TABLE RAW_TABLE  
+(
+    COL1 STRING,
+    COL2 STRING,
+    CREATEDATE STRING,
+    DAYID STRING,
+    MARKETID STRING
+)
+ROW FORMAT DELIMITED 
+FIELDS TERMINATE BY'\t'
+STORED AS TEXTFILE;
+
+>LOAD DATA INPATH '/FOLDER/TO/EXAMPLE.txt  INTO RAW_TABLE;
+
+>CREATE TABLE JLT_CLEAN AS
+SELECT col1,
+  col2,
+  dayid,
+  marketid,
+  MAX(createdate) AS createdate
+FROM JLT_STAHING
+GROUP BY col1,
+  col2,
+  dayid,
+  marketid;
+
+5.	Difference between bucketing and partitioning
+Partitioning
+•	Partitioning is used to divide the table into different partitions. Each partition is stored as a different directory.
+•	A partition is created for each unique value of the partition column.
+•	Hierarchical partitioning can be done by specifying the partitioning columns in a sequence as per the hierarchy like Country, State, City.
+•	We cannot control the number of partitions if the value of partitioning columns have a very high cardinality.
+•	Partitioning allows hive to avoid full table scan if partition columns are used in the where clause of hive query. A query containing partition columns in the where clause will scan directories for specific partition only.
+Bucketing
+•	Bucketing is used to distribute/organize the data into fixed number of buckets.
+•	Each bucket is stored as a file under the Table/Partition directory.
+•	The number of buckets are fixed at the table creation time. All the data will be distributed into these buckets based on the hash value of the bucketing columns.
+•	Which records go to which bucket are decided by the Hash value of columns used for bucketing.
+•	A Bucket will have all the records for same value of bucketing columns.
+•	A Bucket will have all the records for same Hash value of bucketing columns. So records having different value of bucketing columns but having same hash value will go into the same bucket.
+•	Bucketing is used for efficient map-side joins between bucketed tables and for effectively executing sampling queries.
+ 
+
+6.	Difference between order by, sort by, distributed by and clustered by.
+? ORDER BY x: guarantees global ordering, but does this by pushing all data through just one reducer. This is basically unacceptable for large datasets. You end up one sorted file as output.
+? SORT BY x: orders data at each of N reducers, but each reducer can receive overlapping ranges of data. You end up with N or more sorted files with overlapping ranges.
+? DISTRIBUTE BY x: ensures each of N reducers gets non-overlapping ranges of x, but doesn't sort the output of each reducer. You end up with N or unsorted files with non-overlapping ranges.
+? CLUSTER BY x: (Combination of SORT BY and DISTRIBUTED by) ensures each of N reducers gets non-overlapping ranges, and then sorts by those ranges at the reducers. This gives you global ordering, and is the same as doing (DISTRIBUTE BY x and SORT BY x). You end up with N or more sorted files with non-overlapping ranges.
+
+7.	When to go for sort by and order by
+8.	What is difference between like and rlike.
+Performs a pattern match of a string expression expr against a pattern pat. The pattern can be an extended regular expression. “Regular Expressions”. Returns 1 if expr matches pat; otherwise it returns 0. If either expr or pat is NULL, the result is NULL. RLIKE is a synonym for REGEXP, provided for mSQL compatibility. 
+
+Pattern matching using SQL simple regular expression comparison. Returns 1 (TRUE) or 0 (FALSE). If either expr or pat is NULL, the result is NULL. 
+
+9.	Have you used CASE statement in HIVE. If yes is it possible to use default along with case statement in HIVE.
+10.	Is it possible to UNION between two tables having different number of records?
+11.	What is LEAD and LAG function in hive.
+12.	Write the sqoop statement for inserting data from RDBMS to Hadoop.
+Sqoop import –connect jdbc:mysql://localhost/test –username cloudera –password cloudera –hive-import –hive-table –target-dir /emp/ --m 8
+13.	What are the file formats that are used in your project in HIVE?
+ORC for optimization 
+14.	Write the mapreduce code for wordcount.
+15.	How many node cluster you are working with in your project.
+16.	How to find the top 3 sal from emp table using hive.
+select * from (select salary, ROW_NUMBER() over (ORDER BY salary) as row_no from emp group by salary) res where res.row_no = 4
+
+17.	How to 8th sal from emp by using sql.
+18.	What is indexing
+19.	What are the UDF’s in HIVE
+20.	How many mappers and reducers will run when you execute following queries.
+Select * from emp.—No mapper(selecting all columns, not filtering any column)  and no reducer(since there is no aggregations are happening)
+Select count(*) from emp;--  mapping and Reducer will be invoked since there is only aggregation is happening 
+Select Dept, count(dept) from emp group by dept;-- here both map and reduce phases comes since both aggregation and filtered columns
+Select * from emp where id=10; --Only map phase will run since there are no aggregation is happening   
+21.	What is skewed join, replicated join.
+22.	What is mapside join.
+23.	When to go for mapside join and reducer side join
+24.	What is the difference between comparator and comparable
+25.	Difference between abstract and interface
+26.	Difference between hashtable and hashmap
+27.	What is synchronized mean in java.
+28.	Difference between list and set
+29.	How to achieve multiple inheritance.
+30.	What is RANK and DENSERANK
+31.	What is the default number of mappers in sqoop and what if we give 10 mappers and how it will impact the performance
+32.	What is a partitioner in mapreduce
+33.	What is Cassandra
+34.	How to schedule jobs in oozie
+35.	What if we don’t mention schema in pig while loading data
+36.	What is the query to load data into partitioned table and why should we have to mention the partition column in the end of select statement while inserting data
+37.	What is the difference between external and managed table and when to go for them
+38.	When to go for static and dynamic partitioning
+39.	What are the file formats supported in hive and what is ORC.
+40.	 What is SerDE in hive.
+41.	How to find the 7th highest value in array in java.
+42.	How to pass param file in sqoop.
+      
+
