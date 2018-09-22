@@ -33,19 +33,19 @@ GROUP BY col1,
 
 5.	Difference between bucketing and partitioning
 Partitioning
-ï	Partitioning is used to divide the table into different partitions. Each partition is stored as a different directory.
-ï	A partition is created for each unique value of the partition column.
-ï	Hierarchical partitioning can be done by specifying the partitioning columns in a sequence as per the hierarchy like Country, State, City.
-ï	We cannot control the number of partitions if the value of partitioning columns have a very high cardinality.
-ï	Partitioning allows hive to avoid full table scan if partition columns are used in the where clause of hive query. A query containing partition columns in the where clause will scan directories for specific partition only.
+‚Ä¢	Partitioning is used to divide the table into different partitions. Each partition is stored as a different directory.
+‚Ä¢	A partition is created for each unique value of the partition column.
+‚Ä¢	Hierarchical partitioning can be done by specifying the partitioning columns in a sequence as per the hierarchy like Country, State, City.
+‚Ä¢	We cannot control the number of partitions if the value of partitioning columns have a very high cardinality.
+‚Ä¢	Partitioning allows hive to avoid full table scan if partition columns are used in the where clause of hive query. A query containing partition columns in the where clause will scan directories for specific partition only.
 Bucketing
-ï	Bucketing is used to distribute/organize the data into fixed number of buckets.
-ï	Each bucket is stored as a file under the Table/Partition directory.
-ï	The number of buckets are fixed at the table creation time. All the data will be distributed into these buckets based on the hash value of the bucketing columns.
-ï	Which records go to which bucket are decided by the Hash value of columns used for bucketing.
-ï	A Bucket will have all the records for same value of bucketing columns.
-ï	A Bucket will have all the records for same Hash value of bucketing columns. So records having different value of bucketing columns but having same hash value will go into the same bucket.
-ï	Bucketing is used for efficient map-side joins between bucketed tables and for effectively executing sampling queries.
+‚Ä¢	Bucketing is used to distribute/organize the data into fixed number of buckets.
+‚Ä¢	Each bucket is stored as a file under the Table/Partition directory.
+‚Ä¢	The number of buckets are fixed at the table creation time. All the data will be distributed into these buckets based on the hash value of the bucketing columns.
+‚Ä¢	Which records go to which bucket are decided by the Hash value of columns used for bucketing.
+‚Ä¢	A Bucket will have all the records for same value of bucketing columns.
+‚Ä¢	A Bucket will have all the records for same Hash value of bucketing columns. So records having different value of bucketing columns but having same hash value will go into the same bucket.
+‚Ä¢	Bucketing is used for efficient map-side joins between bucketed tables and for effectively executing sampling queries.
  
 
 6.	Difference between order by, sort by, distributed by and clustered by.
@@ -56,7 +56,7 @@ Bucketing
 
 7.	When to go for sort by and order by
 8.	What is difference between like and rlike.
-Performs a pattern match of a string expression expr against a pattern pat. The pattern can be an extended regular expression. ìRegular Expressionsî. Returns 1 if expr matches pat; otherwise it returns 0. If either expr or pat is NULL, the result is NULL. RLIKE is a synonym for REGEXP, provided for mSQL compatibility. 
+Performs a pattern match of a string expression expr against a pattern pat. The pattern can be an extended regular expression. ‚ÄúRegular Expressions‚Äù. Returns 1 if expr matches pat; otherwise it returns 0. If either expr or pat is NULL, the result is NULL. RLIKE is a synonym for REGEXP, provided for mSQL compatibility. 
 
 Pattern matching using SQL simple regular expression comparison. Returns 1 (TRUE) or 0 (FALSE). If either expr or pat is NULL, the result is NULL. 
 
@@ -64,7 +64,7 @@ Pattern matching using SQL simple regular expression comparison. Returns 1 (TRUE
 10.	Is it possible to UNION between two tables having different number of records?
 11.	What is LEAD and LAG function in hive.
 12.	Write the sqoop statement for inserting data from RDBMS to Hadoop.
-Sqoop import ñconnect jdbc:mysql://localhost/test ñusername cloudera ñpassword cloudera ñhive-import ñhive-table ñtarget-dir /emp/ --m 8
+Sqoop import ‚Äìconnect jdbc:mysql://localhost/test ‚Äìusername cloudera ‚Äìpassword cloudera ‚Äìhive-import ‚Äìhive-table ‚Äìtarget-dir /emp/ --m 8
 13.	What are the file formats that are used in your project in HIVE?
 ORC for optimization 
 14.	Write the mapreduce code for wordcount.
@@ -74,9 +74,9 @@ select * from (select salary, ROW_NUMBER() over (ORDER BY salary) as row_no from
 
 17.	How to 8th sal from emp by using sql.
 18.	What is indexing
-19.	What are the UDFís in HIVE
+19.	What are the UDF‚Äôs in HIVE
 20.	How many mappers and reducers will run when you execute following queries.
-Select * from emp.óNo mapper(selecting all columns, not filtering any column)  and no reducer(since there is no aggregations are happening)
+Select * from emp.‚ÄîNo mapper(selecting all columns, not filtering any column)  and no reducer(since there is no aggregations are happening)
 Select count(*) from emp;--  mapping and Reducer will be invoked since there is only aggregation is happening 
 Select Dept, count(dept) from emp group by dept;-- here both map and reduce phases comes since both aggregation and filtered columns
 Select * from emp where id=10; --Only map phase will run since there are no aggregation is happening   
@@ -94,7 +94,7 @@ Select * from emp where id=10; --Only map phase will run since there are no aggr
 32.	What is a partitioner in mapreduce
 33.	What is Cassandra
 34.	How to schedule jobs in oozie
-35.	What if we donít mention schema in pig while loading data
+35.	What if we don‚Äôt mention schema in pig while loading data
 36.	What is the query to load data into partitioned table and why should we have to mention the partition column in the end of select statement while inserting data
 37.	What is the difference between external and managed table and when to go for them
 38.	When to go for static and dynamic partitioning
@@ -102,5 +102,5 @@ Select * from emp where id=10; --Only map phase will run since there are no aggr
 40.	 What is SerDE in hive.
 41.	How to find the 7th highest value in array in java.
 42.	How to pass param file in sqoop.
-      
+43. How to get particular row from a file?       
 
