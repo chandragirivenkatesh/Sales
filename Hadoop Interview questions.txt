@@ -4,7 +4,11 @@ Hadoop Interview questions
 2.	What is Hive.
 3.	Are you incrementally appending the data or overwriting the data.
 4.	Avoid duplicates while loading the data in hive
-Well, hive does not provide row level update/delete; therefore we can avoid the duplicate data while loading the data in base tables. As shown below
+
+    insert overwrite table dynpart select distinct * from dynpart;
+
+    Well, hive does not provide row level update/delete; therefore we can avoid the duplicate data while loading the data in base tables. 
+As shown below
 >CREATE TABLE RAW_TABLE  
 (
     COL1 STRING,
