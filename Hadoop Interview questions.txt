@@ -108,3 +108,4 @@ Select * from emp where id=10; --Only map phase will run since there are no aggr
 42.	How to pass param file in sqoop.
 43. How to get particular row from a file?       
 
+https://stackoverflow.com/questions/40204001/how-does-mapreduce-recover-from-errors-if-failure-happens-in-an-intermediate-sta
