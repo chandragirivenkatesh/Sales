@@ -109,3 +109,82 @@ Select * from emp where id=10; --Only map phase will run since there are no aggr
 43. How to get particular row from a file?       
 
 https://stackoverflow.com/questions/40204001/how-does-mapreduce-recover-from-errors-if-failure-happens-in-an-intermediate-sta
+
+
+1. How to import the data from rdbms to hadoop using sqoop for 10 tables out of 100 tables in job
+2. How many tables u have worked on for sqoop importing
+3.How to write a UDF in pig and how to register it in case the class has many functions in it
+4. Difference between cogroup n group in pig
+    The GROUP and COGROUP operators are identical. Both operators work with one or more relations. 
+    For readability GROUP is used in statements involving one relation and COGROUP is used in statements involving two or more relations. 
+    You can COGROUP up to but no more than 127 relations at a time.
+5. How to find max sal of a dept in pig
+    A = load data 'a.txt' using PigStorage(',') (id:int, name:chararray,salary:int, Dept:int)
+    B = Group A by A.dept;
+    C = foreach B generate group,max(A.sal);
+dump C;
+6. Based on what how many buckets we have to decide?
+    One thing buckets are used for is to increase load performance
+    SELECT performance ( predicate pushdown )
+    Join Performance ( bucket join )
+    Some sample operations can get faster with buckets.
+
+7. What will happen when we import data to a dynamic partition table if source table is empty
+    Since there is no data, no partition will be created 
+8. What is default partitioning in hive?
+    When you define a table in Hive with a partitioning column of type STRING, all NULL values within the partitioning column appear as __HIVE_DEFAULT_PARTITION__ in the output of a SELECT from Hive statement
+9. What is serialisation?
+    Serialization in Java is a mechanism of writing the state of an object into a byte stream. It is mainly used in Hibernate, RMI, JPA, EJB and JMS technologies. The reverse operation of serialization is called deserialization.
+
+10. What is difference between arraylist n linkedlist?
+11. What is hdfs archiving?
+12. How to merge data in hive?
+13. What is S3 in AWS?
+    
+
+14. What is cloudwatch in AWS (scheduling)?
+    Amazon CloudWatch allows developers, system architects, and administrators to monitor their AWS applications in the cloud, in near-real-time. CloudWatch is automatically configured to provide metrics on request counts, latency, and CPU usage. Users also can send their own logs and custom metrics to CloudWatch for monitoring.
+    The data and reports CloudWatch provides lets users keep track of application performance, resource use, operational issues, and constraints. This helps organizations resolve technical issues and streamline operations.
+    CloudWatch is most commonly used with Elastic Compute Cloud (EC2) instances, and can also monitor Amazon Elastic Block Store (EBS) volumes, Elastic Load Balancers (ELBs), and instances of Amazon Relational Database Service (RDS). It also can extend beyond these core services to intake custom data from external sources.
+
+Users choose CloudWatch for its automatic integration with AWS services, its flexibility, and its ability to scale quickly.
+15. What is transient and volatile data members in java?
+    By making a variable or field transient in a Class prevents it from being Serialized in Java.  Along with static variables, transient variables are not serialized during Serialization and they are initialized with there default value during deserialization process e.g. an int transient variable is initialized with zero during deserialization in Java. to learn more about transient variable, See What is transient variable in Java.
+    On the other hand volatile variables are used in Concurrent programming in Java. When we declare a variable volatile,  every thread reads its value from main memory and don't used cached value available in every thread stack. volatile variable also prevents compiler from doing reordering which can compromise synchronization. to learn more about volatile variables, read What is volatile variable in Java.  Many Java programmer though know about volatile variables they are not sure where to use volatile modifier in Java. One of the popular example of  using volatile variable is implementing double checked locking in Singleton, where Singleton instance of class is declared volatile in Java.
+16. What is final method in java?
+    A final method cannot be overridden. Which means even though a sub class can call the final method of parent class without any issues but it cannot override it.
+17. Can abstract class be made final in java?
+    No, an abstract class cannot be final, Abstract methods needs to be implemented; therefore it is overridden in the sub class. But by marking final, we are restricting it to override. Compile-time error will be thrown: Error message: The abstract method display in type <abstract-class-name> can only set a visibility modifier, one of public or protected
+18. What are checked n unchecked exceptions?
+    Checked exceptions are the exceptions that are checked at compile time. If some code within a method throws a checked exception, then the method must either handle the exception or it must specify the exception using throws keyword.
+    Unchecked are the exceptions that are not checked at compiled time. In Java exceptions under Error and RuntimeException classes are unchecked exceptions, everything else under throwable is checked.
+
+DS:
+1. Spark interview Questions with Answers 
+http://bigdatascholars.blogspot.com/2018/07/spark-interview-questions.html
+2. Bigdata Interview Questions with Answers
+http://bigdatascholars.blogspot.com/2018/07/bigdata-interview-questions.html
+3.Hive Interview Questions with Answers
+http://bigdatascholars.blogspot.com/2018/08/hive-interview-questions-with-answers.html
+4.SQOOP Interview Questions with Answers
+http://bigdatascholars.blogspot.com/2018/08/sqoop-interview-question-and-answers.html
+
+IBM interview questions
+1. if a Job gets fail how will you handle it for example connectivity issues
+    We have to perform the cleanup activity corresponding to the job and then rerun the job
+2. What format you used in your project? why avro is not used although it gives more compression
+3. If you have 100 tables how will you write the script for creating table? Are you writing individually or using Utility?
+4. How will you make sure if the data is loaded properly or not using sqoop
+5. how are scheduling your sqoop jobs? any utility?
+6. how will you write that oozie XML, can you explain briefly and what parameters did you use in that XML
+7. Suppose there is a table which got loaded into hive later they have changed the schema in RDBMS like they have removed the columns, so how are you going to load the data? Any checkup are you doing?
+    In this case Job will not fail first and if they remove any column from RDBMS, corresponding values will be inserted as NULL further     in HIVE table
+8. Suppose there is a table which got loaded into hive later they have changed the schema in RDBMS like they have added the columns, so how are you going to load the data? Any checkup are you doing?
+    Incase if they add any column from RDBMS, those values will be loaded into part-m file but only displays the data correspoding to       columns which exist in HIVE, So we need to add the column manually in HIVE, so that it displays properly.
+    
+9. where exactly you are using Pig in your project, whatever you are doing same thing can be done in hive? so why to for Pig
+10. How to update a specific data in hive? Since it does not supported updating hive
+11. How are you validating the datatypes between RDBMS and HIVE
+    Automatically the RDBMS datatypes will be converted to HIVE datatypes. for example VARCHAR will be converted as a string 
+    But not sure about validation.
+
