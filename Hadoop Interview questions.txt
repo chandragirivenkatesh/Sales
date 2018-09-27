@@ -68,13 +68,13 @@ Pattern matching using SQL simple regular expression comparison. Returns 1 (TRUE
 10.	Is it possible to UNION between two tables having different number of records?
 11.	What is LEAD and LAG function in hive.
 12.	Write the sqoop statement for inserting data from RDBMS to Hadoop.
-Sqoop import –connect jdbc:mysql://localhost/test –username cloudera –password cloudera –hive-import –hive-table –target-dir /emp/ --m 8
+    Sqoop import –connect jdbc:mysql://localhost/test –username cloudera –password cloudera –hive-import –hive-table –target-dir /emp/ --m 8
 13.	What are the file formats that are used in your project in HIVE?
-ORC for optimization 
+    ORC for optimization 
 14.	Write the mapreduce code for wordcount.
 15.	How many node cluster you are working with in your project.
 16.	How to find the top 3 sal from emp table using hive.
-select * from (select salary, ROW_NUMBER() over (ORDER BY salary) as row_no from emp group by salary) res where res.row_no = 4
+    select * from (select salary, ROW_NUMBER() over (ORDER BY salary) as row_no from emp group by salary) res where res.row_no = 4
 
 17.	How to 8th sal from emp by using sql.
 18.	What is indexing
@@ -188,3 +188,14 @@ IBM interview questions
     Automatically the RDBMS datatypes will be converted to HIVE datatypes. for example VARCHAR will be converted as a string 
     But not sure about validation.
 
+
+Capgemini:
+1. Kinds of tables in hive
+2. select empid from empgroup by empid having count(*)>1, what is will be the result of this query?
+    Duplicate empid's will be displayed
+3. How to get 1st,5th, 10th,29th.30th lines from a Log file?
+4. Can we perform a Join operation where you dont have common data between tables
+5. Logic for transpose of a row 
+6. If we want to get the row specific line number from log file, what will you do?( I said grep but I knew its wrong)
+7. Can we move the logs file using sqoop?if not why?(I said no it's not possible)
+8. If comparable is there why to go for comparator something he was asking
