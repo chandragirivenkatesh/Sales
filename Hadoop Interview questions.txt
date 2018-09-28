@@ -138,7 +138,20 @@ dump C;
 
 10. What is difference between arraylist n linkedlist?
 11. What is hdfs archiving?
+    The HDFS Archival Storage feature gives you the option to reduce cost by keeping rarely used data on less expensive but higher  density storage. Such data is usually referred to as “cold” data. Unlike traditional data archives, with archival storage on the HDFS, the data is still accessible. Applications can easily retrieve and process such data.
 12. How to merge data in hive?
+    By using --merge-key for normal import
+    sqoop import --connect jdbc:mysql://localhost/test --table emp \
+                 --username hive -password hive --incremental lastmodified --merge-key empid --check-column cr_date \
+                 --target-dir /sqoop/empdata/
+    By using --merge-key for hive import
+    sqoop merge --new-data /apps/hive/warehouse/student/part-m-00000
+                --onto /apps/hive/warehouse/student/part-m-00000_copy_1
+                --target-dir /tmp/sqoop_merge
+                --jar-file /tmp/sqoop-ambari-qa/compile/9062c87c959e4090dcec5995a439b514/TIME.jar
+                --class-name TIME
+                --merge-key TIME
+  
 13. What is S3 in AWS?
     
 
@@ -151,6 +164,7 @@ Users choose CloudWatch for its automatic integration with AWS services, its fle
 15. What is transient and volatile data members in java?
     By making a variable or field transient in a Class prevents it from being Serialized in Java.  Along with static variables, transient variables are not serialized during Serialization and they are initialized with there default value during deserialization process e.g. an int transient variable is initialized with zero during deserialization in Java. to learn more about transient variable, See What is transient variable in Java.
     On the other hand volatile variables are used in Concurrent programming in Java. When we declare a variable volatile,  every thread reads its value from main memory and don't used cached value available in every thread stack. volatile variable also prevents compiler from doing reordering which can compromise synchronization. to learn more about volatile variables, read What is volatile variable in Java.  Many Java programmer though know about volatile variables they are not sure where to use volatile modifier in Java. One of the popular example of  using volatile variable is implementing double checked locking in Singleton, where Singleton instance of class is declared volatile in Java.
+    
 16. What is final method in java?
     A final method cannot be overridden. Which means even though a sub class can call the final method of parent class without any issues but it cannot override it.
 17. Can abstract class be made final in java?
