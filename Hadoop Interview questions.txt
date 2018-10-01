@@ -213,3 +213,5 @@ Capgemini:
 6. If we want to get the row specific line number from log file, what will you do?( I said grep but I knew its wrong)
 7. Can we move the logs file using sqoop?if not why?(I said no it's not possible)
 8. If comparable is there why to go for comparator something he was asking
+9. Command to move the data from local to HDFS
+10. command to move the data across the clusters
