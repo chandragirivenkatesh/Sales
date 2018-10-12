@@ -215,3 +215,7 @@ Capgemini:
 8. If comparable is there why to go for comparator something he was asking
 9. Command to move the data from local to HDFS
 10. command to move the data across the clusters
+
+
+What are higher order functions
+what are auxilary functions in scala
