@@ -87,6 +87,20 @@ Select * from emp where id=10; --Only map phase will run since there are no aggr
 21.	What is skewed join, replicated join.
 22.	What is mapside join.
 23.	When to go for mapside join and reducer side join
+    Map side join performs join before data reached to Map. Map function expects a strong prerequisites before joining data at map side.    Both method have some pros and cons. Map side join is efficient compare to reduce side but it require strict format.
+
+    Prerequisites:
+
+    Data should be partitioned and sorted in particular way.
+    Each input data should be divided in same number of partition.
+    Must be sorted with same key.
+    All the records for a particular key must reside in the same partition.
+    Reduce side join also called as Repartitioned join or Repartitioned sort merge join and also it is mostly used join type. It will       have to go through sort and shuffle phase which would incur network overhead.Reduce side join uses few terms like data source, tag          and group key lets be familiar with it.
+
+    Data Source is referring to data source files, probably taken from RDBMS
+    Tag would be used to tag every record with it’s source name, so that it’s source can be identified at any given point of time be it     is in map/reduce phase. why it is required will cover it later.
+    Group key is referring column to be used as join key between two data sources.
+
 24.	What is the difference between comparator and comparable
 25.	Difference between abstract and interface
 26.	Difference between hashtable and hashmap
