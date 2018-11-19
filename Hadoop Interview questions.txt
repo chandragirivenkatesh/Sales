@@ -228,8 +228,17 @@ Capgemini:
 7. Can we move the logs file using sqoop?if not why?(I said no it's not possible)
 8. If comparable is there why to go for comparator something he was asking
 9. Command to move the data from local to HDFS
-10. command to move the data across the clusters
+10. Command to move the data across the clusters
 
 
 What are higher order functions
 what are auxilary functions in scala
+
+Optum:
+1. Which file format supports ACID Transactions?
+Ans: ORC
+2. what is Zoo Keeper?
+3. Write a map reduce or spark program to findout the second highest salary in each group
+4. what is protected access specifier?
+5. what are the flyweight, Adapter, Composite, command, builder design patters
+6. How to remove the columns in Hbase?
