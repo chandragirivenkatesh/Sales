@@ -242,3 +242,12 @@ Ans: ORC
 4. what is protected access specifier?
 5. what are the flyweight, Adapter, Composite, command, builder design patters
 6. How to remove the columns in Hbase?
+7. What is the flow of mapreduce?
+Map-->combiner-->Partitioner-->shuffle-->sort-->Reduce
+
+Deloitte:
+1. What is YARN architecure
+2. what file format used and what is parquet?
+3. Types of tables in hive?
+4. Query for who placed more than 2 orders?
+5. How to get the second largest ordered item for each customer?
