@@ -230,7 +230,7 @@ Capgemini:
 9. Command to move the data from local to HDFS
 10. Command to move the data across the clusters
 
-
+CSS:
 What are higher order functions
 what are auxilary functions in scala
 
@@ -249,5 +249,9 @@ Deloitte:
 1. What is YARN architecure
 2. what file format used and what is parquet?
 3. Types of tables in hive?
-4. Query for who placed more than 2 orders?
+4. Query for who placed more than 2 orders? customer and order tables are given
 5. How to get the second largest ordered item for each customer?
+6. How to update the data in hive?
+   Load the updated data in staging table, then peform FULL OUTER JOIN on original and staging tables like below
+   insert overwrite table main_table select t2.a, t2.b, t2.c,t2.d from staging_table t2 full outer join main_table t1
+   on t1.a=t2.a;
