@@ -255,3 +255,13 @@ Deloitte:
    Load the updated data in staging table, then peform FULL OUTER JOIN on original and staging tables like below
    insert overwrite table main_table select t2.a, t2.b, t2.c,t2.d from staging_table t2 full outer join main_table t1
    on t1.a=t2.a;
+   
+GE Healthcare:
+1. what are the differences between ClassNotFoundException,ClassCastException,NoClassDefFoundError, InvalidClassException, IllegalClassFormatException and UnmodifiableClassException
+2. Can hadoop supports third party resource management tool instead of YARN?
+3. How to delete the data from rocord from hive table?
+4. How to handle the memeory issues in Java whcih comes from Hadoop
+5. How to use datatype names as column names in hive?
+6. what happens incase of hadoop data node failure and how the data can be recovered?
+7. What is rack awareness?
+8. How will we get to know which datanodes are being used during the execution of a job?
