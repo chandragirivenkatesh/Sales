@@ -265,3 +265,4 @@ GE Healthcare:
 6. what happens incase of hadoop data node failure and how the data can be recovered?
 7. What is rack awareness?
 8. How will we get to know which datanodes are being used during the execution of a job?
+9. Why to gor hadoop incase of structured data when already RDBMS is there to process the data?
