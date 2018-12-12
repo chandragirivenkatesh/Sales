@@ -339,3 +339,23 @@ so i want to update table B using the latest updated columns based up on the id 
 18. what do you know about Ntile.
 
 19. Spark - Scenario : Suppose i m running 10 sql jobs which generally take 10 mins to complete, but one it took 1 hour to complete if this is the case how to you report this error and how will you debug your code and provide a solution for this.
+
+
+Maveric systems:
+1. what is the default replication factor? can we set that to 1?
+2. what is YARN? can we setup hadoop cluster without YARN?
+3. Kinds of tables in HIVE? On what basis you decide?
+4. how to import all tables using sqoop?
+5. what is eval function?
+6. what kind of table you would go incase the file name gets changed everytime?
+7. There is a table in Oracle which needs to be stored in different files in HDFS using SQOOP
+8. Why to go for kafka instead of FLUME?
+9. How map reduce programming works?
+10. what is map side join?
+Mapjoin is a little-known feature of Hive. It allows a table to be loaded into memory so that a (very fast) join could be performed entirely within a mapper without having to use a Map/Reduce step. If your queries frequently rely on small table joins (e.g. cities or countries, etc.) you might see a very substantial speed-up from using mapjoins.
+11. what is partitioning and bucketing, syntaxes 
+12. How would be the structure of structure after partitioning and bucketing
+13. how to find the count number of rows in oracle table using sqoop?
+    by using eval function
+14. Incase schema gets changed evrytime, how would you deal it?
+15. what is Journal node and what if datanode goes down?
