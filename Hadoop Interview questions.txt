@@ -383,5 +383,10 @@ even after partitioning on a particular field or fields, the partitioned file si
 19.	How will you view the data present in HDFS?
 20.	Where will you see the logs of jobs?
 21.	If I want to move the data between the clusters how would you do?
+22. How many mappers will run for these queries?
+select * from emp;
+select * from emp where emp_id=1
+select * from wmp where dept = 1 order by sal
+
 
 
