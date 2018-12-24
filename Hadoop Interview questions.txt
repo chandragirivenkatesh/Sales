@@ -361,24 +361,27 @@ Mapjoin is a little-known feature of Hive. It allows a table to be loaded into m
 15. what is Journal node and what if datanode goes down?
 
 Infosys:
-1. Tell about your project
-2. If the data from HDFS being used in different apps like HIVE,PIG, MR what kind of table will you create?
-3. What is managed table
-4. difference between partitining and bucketing?
-5. How Bucketing will increase the performance?
+1.	Tell about your project
+2.	If the data from HDFS being used in different apps like HIVE,PIG, MR what kind of table will you create?
+3.	What is managed table
+4.	Difference between partitioning and bucketing?
+5.	How Bucketing will increase the performance?
 even after partitioning on a particular field or fields, the partitioned file size doesn’t match with the actual expectation and remains huge and we want to manage the partition results into different parts. To overcome this problem of partitioning, Hive provides Bucketing concept, which allows user to divide table data sets into more manageable parts.
-6. How map join improves the performance in bucketing?
-7. what is map side join?
-8. what is replicated join?
-9. Difference between group and CO-group
-10. What transformations you did in PIG?
-11. What data format you used in your project? what is the difference between ORC and Parquet? 
-12. Write a query to display the the department names where sum of department salary is more than 15000 
-13. what are the optimization techniques used in your project?
-14. what is view and how it improves the perofrmance?
-15. where will you see the jobs? and how will you monitor them?
-16. How a job will be handled after a failure?
-17. What is your Daily work?
-18. How will you view the data present in HDFS?
-19. Where will you see the logs of jobs?
-20. If I want to move the data between the clusters how would you do?
+6.	How map join improves the performance in bucketing?
+7.	what is map side join?
+8.	How will you write the map join ?
+9.	What is replicated join?
+10.	Difference between group and CO-group
+11.	What transformations you did in PIG?
+12.	What data format you used in your project? what is the difference between ORC and Parquet? 
+13.	Write a query to display the the department names where sum of department salary is more than 15000 
+14.	what are the optimization techniques used in your project?
+15.	what is view and how it improves the perofrmance?
+16.	where will you see the jobs? and how will you monitor them?
+17.	How a job will be handled after a failure?
+18.	What is your Daily work?
+19.	How will you view the data present in HDFS?
+20.	Where will you see the logs of jobs?
+21.	If I want to move the data between the clusters how would you do?
+
+
