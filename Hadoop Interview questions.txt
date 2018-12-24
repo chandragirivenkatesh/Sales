@@ -387,6 +387,6 @@ even after partitioning on a particular field or fields, the partitioned file si
 select * from emp;
 select * from emp where emp_id=1
 select * from wmp where dept = 1 order by sal
-
+23. Are you working on Agile methodology? what tool you are using for? 
 
 
