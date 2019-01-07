@@ -395,3 +395,18 @@ select * from wmp where dept = 1 order by sal
 23. Are you working on Agile methodology? what tool you are using for? 
 
 
+TCS:
+1.what is serDE?
+2. what Partitioning and bucketing?
+3. How to update data in hive?
+4. How to handle date format when we use Parquet format while sqooping the data?
+5. What are UDF's?
+6. Table A has string column and Table B has Arr[String] column, so when we load the data into table B using table A, Will it work?
+7. How to set the location for a table?
+8. IF we rename an external table, will it fetch from the same location of data or it shows 0?
+9. How to convert the string NULLS to system NULLS?
+10. How to replace a character with a comma in a column?
+11. What are LIKE and RLIKE?
+12. How to exclude tables while importing the data using sqoop?
+13. How to handle error which shows  error code 2?
+
