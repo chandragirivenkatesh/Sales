@@ -441,3 +441,18 @@ and dn.directory_number in(select DIRECTORY_NUMBER  from DIRECTORY_NUMBER where 
                             group by DIRECTORY_NUMBER
                             having count(DIRECTORY_NUMBER)>1)) query
 where query.rnk=1   
+select esd.EXTERNAL_SYSTEM_ID, coi.DN_CNT, esd.PARENT_EXTERNAL_SYSTEM_ID from 
+external_system_data esd 
+inner join order_header@VOMWFPL eflow
+on esd.EXTERNAL_SYSTEM_ID = eflow.ORDER_ID
+where eflow.ORDER_STATUS_CD ='CNL'
+and esd.EXTERNAL_SYSTEM_NAME='NETWORK_SYSTEM'
+and esd.OWNER_TYPE='ORDER' 
+join
+(select count(distinct(owner_id)) as DN_CNT,customer_order_id from customer_order_item where OWNER_TYPE='DIRECTORY_NUMBER'
+and ACTION_CD=1 
+and owner_id in (
+select  DIRECTORY_NUMBER from DIRECTORY_NUMBER where STATUS_CD in (16,22,21) and DN_CLOSE_DATE is null
+and DIRECTORY_NUMBER not in (select directory_number from COD_DN where MIGR_TN_FG ='Y'))
+group by customer_order_id ) coi
+on esd.owner_id=coi.CUSTOMER_ORDER_ID
