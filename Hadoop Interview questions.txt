@@ -411,48 +411,13 @@ TCS:
 13. How to handle error which shows  error code 2?
 
 
-
-select esd.EXTERNAL_SYSTEM_ID, count(dn.directory_number) CNT, esd.PARENT_EXTERNAL_SYSTEM_ID
-from  directory_number dn,customer_order_item coi,external_system_data esd, order_header@VOMWFPL eflow
-where esd.EXTERNAL_SYSTEM_ID = eflow.ORDER_ID  and eflow.ORDER_STATUS_CD ='CNL' and dn.directory_number_id = coi.OWNER_ID and coi.OWNER_TYPE='DIRECTORY_NUMBER'  and esd.EXTERNAL_SYSTEM_NAME='NETWORK_SYSTEM'
-and esd.owner_id=coi.CUSTOMER_ORDER_ID and esd.OWNER_TYPE='ORDER'  and coi.ACTION_CD=1 and esd.external_system_id like '1%'
-and dn.directory_number in(select  directory_number from directory_number where directory_number in (
-                            select DIRECTORY_NUMBER  from DIRECTORY_NUMBER where DIRECTORY_NUMBER in (
-                                    select  directory_number from directory_number where DN_CLOSE_DATE is null and STATUS_CD not in (12,11) and STATUS_CD in (16,22,21) and length(DIRECTORY_NUMBER)=10
-                                     MINUS
-                                    select  CAST(directory_number as NUMBER) from COD_DN where MIGR_TN_FG ='Y')
-                            and DN_CLOSE_DATE is null and STATUS_CD not in (12,11) and STATUS_CD in (16,22,21) and length(DIRECTORY_NUMBER)=10 
-                            group by DIRECTORY_NUMBER
-                            having count(DIRECTORY_NUMBER)>1))
-group by esd.PARENT_EXTERNAL_SYSTEM_ID,esd.EXTERNAL_SYSTEM_ID,eflow.ORDER_STATUS_CD
-
-select * from (                            
-select esd.EXTERNAL_SYSTEM_ID,ROW_NUMBER() over (PARTITION BY esd.EXTERNAL_SYSTEM_ID order by esd.EXTERNAL_SYSTEM_ID) rnk from directory_number dn 
-INNER JOIN customer_order_item coi ON dn.directory_number_id = coi.OWNER_ID
-INNER JOIN external_system_data esd ON esd.owner_id = coi.CUSTOMER_ORDER_ID
-INNER JOIN order_header@VOMWFPL eflow on esd.EXTERNAL_SYSTEM_ID =eflow.ORDER_ID  
-where eflow.ORDER_STATUS_CD ='CNL'and coi.OWNER_TYPE='DIRECTORY_NUMBER'  and esd.EXTERNAL_SYSTEM_NAME='NETWORK_SYSTEM'
-and esd.OWNER_TYPE='ORDER'  and coi.ACTION_CD=1 and esd.external_system_id like '1%'
-and dn.directory_number in(select DIRECTORY_NUMBER  from DIRECTORY_NUMBER where DIRECTORY_NUMBER in (
-                                    select  directory_number from directory_number where DN_CLOSE_DATE is null and STATUS_CD not in (12,11) and STATUS_CD in (16,22,21) and length(DIRECTORY_NUMBER)=10
-                                     MINUS
-                                    select  CAST(directory_number as NUMBER) from COD_DN where MIGR_TN_FG ='Y')
-                            and DN_CLOSE_DATE is null and STATUS_CD not in (12,11) and STATUS_CD in (16,22,21) and length(DIRECTORY_NUMBER)=10 
-                            group by DIRECTORY_NUMBER
-                            having count(DIRECTORY_NUMBER)>1)) query
-where query.rnk=1   
-select esd.EXTERNAL_SYSTEM_ID, coi.DN_CNT, esd.PARENT_EXTERNAL_SYSTEM_ID from 
-external_system_data esd 
-inner join order_header@VOMWFPL eflow
-on esd.EXTERNAL_SYSTEM_ID = eflow.ORDER_ID
-where eflow.ORDER_STATUS_CD ='CNL'
-and esd.EXTERNAL_SYSTEM_NAME='NETWORK_SYSTEM'
-and esd.OWNER_TYPE='ORDER' 
-join
-(select count(distinct(owner_id)) as DN_CNT,customer_order_id from customer_order_item where OWNER_TYPE='DIRECTORY_NUMBER'
-and ACTION_CD=1 
-and owner_id in (
-select  DIRECTORY_NUMBER from DIRECTORY_NUMBER where STATUS_CD in (16,22,21) and DN_CLOSE_DATE is null
-and DIRECTORY_NUMBER not in (select directory_number from COD_DN where MIGR_TN_FG ='Y'))
-group by customer_order_id ) coi
-on esd.owner_id=coi.CUSTOMER_ORDER_ID
+1. The Shawshank Redemption
+2. Dead Poets Society
+3. (500) Days of Summer
+4. Stand By Me
+5. Life Of Pi
+6. Into The Wild
+7. The Social Network
+8. It's a Wonderful Life
+9. UP
+10. Fight Club﻿
