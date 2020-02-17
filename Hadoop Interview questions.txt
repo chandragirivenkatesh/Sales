@@ -421,3 +421,294 @@ TCS:
 8. It's a Wonderful Life
 9. UP
 10. Fight Club﻿
+
+
+1. managed/External table
+	2. Hive Partitioning/Bucketing? where to use?
+		1. Type of bucket join
+	3. Indexing -- create index index_name on table tample_name(empId)
+	4. Vectorization
+	
+	1. Implicit Parameter
+	2. Implicit class
+	3. Implicit variable
+	4. How remove duplicate in DF
+	5. Curing
+	6. Co-varient,In-varient,intr-varient
+	7. java/scala
+	8. Vectors in scala
+	9. how do you define immutable & mutable
+	10. List((101,Some(30)),(102,Some(40)),(103,Some(70)),(104,None()),(107,None()),(102,Some(100)),(1011,None()))
+		find the sum of list  if(x>50) 
+		SOL : l.map(x=>x.isDefined) if (x => x>10).sum
+		
+		
+	
+
+	
+	
+	1. Diff b/w  hadoop and Spark
+	2. RDD vs DataFrame vs DataSet
+	
+	3. What are the 3 methods in Map and Reduce , Map:- keys,values,isEmpty, concatenate[colors1.++(colors2)],key:colors.contains("red") 	,addString get (returns the value associated with a key.),clear()
+					Reduce:-  reduce() Function. The reduce() method is a higher-order function that takes all the elements in a collection (Array, List, etc) and combines them using a binary operation to produce a single value rduce(_+_)	
+					 reduceLeft(),foldLeft()
+	
+	4. What is the diff b/w partition(Shuffeling) and combiner
+	5. How data is stored in HDFS while file loading, data types in column
+	
+	6. How can import all the table in single query sqoop?  -- import-all-table
+
+	
+	8. Diff b/w spark 1.x, 2.0 & 2.1
+	9. Explain Spark Session?
+	10. Diff b/w map & flatMap 
+	11. Diff b/w leanage graph & DAG
+	12. Diff b/w map & mapPartition
+	13. what is your cluster configuration in detail.
+	14. how can you submit the job
+	
+	15. You having 2 datasets, Then how you improve the performance by reducing,partition,shuffling in spark?
+			How to reduce Spark shuffling caused by join with data coming from Hive?
+			QN: I am loading data from Hive table with Spark and make several transformations including a join between two datasets.
+				 This join is causing a large volume of data shuffling (read) making this operation is quite slow.
+				 To avoid this such shuffling, I imagine that data in Hive should be splitted accross nodes according the fields used for join.
+				 But how to do it in practice?
+				 Using Hive bucketing ?
+				 
+		Sol1: 1. set up the shuffle partitions to a higher number than 200, because 200 is default value for shuffle partitions. (    spark.sql.shuffle.partitions=500 or 1000)
+
+				2. while loading hive ORC table into dataframes, use the "CLUSTER BY" clause with the join key. Something like,
+				df1 = sqlContext.sql("SELECT * FROM TABLE1 CLSUTER BY JOINKEY1")
+				df2 = sqlContext.sql("SELECT * FROM TABLE2 CLUSTER BY JOINKEY2")
+				df1.registerTempTable("df1_tbl")
+				df2.registerTempTable("df2_tbl")
+				Now join df1_tbl & df2_tbl using joinkey1 & joinkey2.
+				
+			QN2: 1. Increasing shuffle.partitions led to error :
+
+				Total size of serialized results of 153680 tasks (1024.0 MB) is bigger than spark.driver.maxResultSize (1024.0 MB)
+				2. Using CLUSTER BY in the select reduced data shuffling from 250 GB to 1 GB and execution time was reduced from 13min to 5min. So it is a good gain.
+			
+		Sol2: how will i avoid shuffle if i have to join both the data frames on 2 join keys,
+				df1 = sqlContext.sql("SELECT * FROM TABLE1 CLSUTER BY JOINKEY1,JOINKEY2")
+				df2 = sqlContext.sql("SELECT * FROM TABLE2 CLUSTER BY JOINKEY1,JOINKEY2")
+				df3 = sqlContext.sql("SELECT * FROM TABLE3 CLUSTER BY JOINKEY1,JOINKEY2")
+				df4=df1.join(df2, df1.JOINKEY1=df2.JOINJEY1 and df1.JOINKEY2=df2.JOINKEY2, "inner")
+				df5 =df1.except(df4).union(df3)
+			
+	
+	16. Diff b/w ..... and repartition in spark
+	17. What is catelog optimiser in dataframe & datasets
+	18. What is tungstone optimiser in saprk?
+	20. Diff b/w SparkSql & Spark Hive? Which is more performance.
+	
+	21. How many ways to create RDD?
+	22. What is manage table & external table in hive
+	23. How we can see the partition in hive? what is the limit of partition.
+			Sol: current Hive versions with RDBMS metastore backend should be able to handle 10 000+ partitions.
+
+			 For numerous reasons, the community is moving away from this design to leverage HBase for the metastore. Follow https://issues.apache.org/jira/browse/HIVE-9452 . Overall design document is available here: 
+	
+	24. Example of employee & product, sum of employment salary
+	25. what is persist & cache in spark
+	26. what is the bucketting limit in hive?
+			
+	
+	27. How to eliminate duplicates in DF ?: ==> data.distinct(), customerDF.dropDuplicates()
+		
+	
+	
+	1. when importing sqoop, How many reducer & mapers are created? Defalut reducer & mapers 
+			Sol : 1- mapper, 4-map tasks , No-reducer
+	1. How many reducer executed in Hive & Sqoop in this query - select * from Employee
+			Sol: -NO (Need to perform a operation on select query like where etc..)
+			
+	2. what is the use of num-maper & split by? what is the default num-mapper -4
+	3. while import a table using sqoop, how to avoid duplicate record in hive? (--merge-key,lastmodified ect)
+	4. Two table having duplicate records in hive? how to avoid it? How to remove duplicate rows from Hive table?
+		Sol: Steps:
+					1) Create a new table from old table (with same structure).
+					2) Copy distinct rows in new table from existing table.
+							select col1,col2,col3,col4,max(<duplicate column>) as <name of duplicate column> from <table name> group by col1,col2,col3,col4;
+					3) Delete old table.
+					4) Rename new table to old one.
+	
+	5. How to find a nth records in table
+	6. How to submit spark job
+	
+	7. what are the default no of cores, executor-num, executor-memory?
+			Sol :	num-executors (YARN only) – default 2
+				 	executor-cores of YARN or total-executor-cores for Mesos – default 1
+				 	executor-memory – default 1 GB
+
+		      
+	8. Spark Architecture
+	9. what is cloudera, What are the component? How to use cloudera? How to login cloudera? Specification
+	
+	10 can you using archistration tool?
+	11. how to tranfer file ( in your macine) from local to HDFS?
+	
+	
+	1. How to delete duplicate records from Hive table?
+		==> you can insert distinct records into some other table
+			create table temp as select distinct * from dynpart
+			OR
+		==> You can use insert overwrite statement to update data
+			insert overwrite table dynpart select distinct * from dynpart;
+			OR
+		
+		id  Name    Technology
+		1   Abcd    Hadoop
+		2   Efgh    Java       --> Duplicate
+		3   Ijkl    Mainframe
+		2   Efgh    Python     --> Duplicate
+		
+		--You can use analytical function to get the duplicate row as:
+		  select * from
+			(select Id,Name,Technology,
+			row_Number() over (partition By Id,Name order by id desc) as row_num from yourtable)tab where row_num > 1;
+			
+		--This will give you output as:
+			id  Name    Technology  row_num
+			2   Efgh    Python           2
+		--When you need to get both the duplicate rows:
+			select * from
+			(select Id,Name,Technology,
+			count(*) over (partition By Id,Name order by id desc) as duplicate_count from yourtable)tab where duplicate_count> 1;
+			Output as:
+					id  Name    Technology  duplicate_count
+					2   Efgh    Java             2
+					2   Efgh    Python           2
+				
+		
+		
+	2. Transpose & explode in spark - how to transpose row to column & column to row
+	   ==> pivote
+		 val pivotDF = df.groupBy("Product").pivot("Country").sum("Amount")
+			pivotDF.show()
+			
+	3.If the target is deleted,what is the data in Hive?
+	4. if the primary key in sql is char or varchar write a query in hive
+	5. import table from HDFS and join the table using sqoop (EMP& Dept)
+	6. partion vs Bucketing? Uses? When to use
+	7. Manage table vs extenal table? uses? when to use
+	8. validated metadata?
+	9. Convert 1999-12-30 to todays date in hive?
+	10. Find only duplicate records?
+			Sol: SELECT name, email, COUNT(*) FROM users GROUP BY name, email HAVING COUNT(*) > 1
+			OR 
+			SELECT * FROM (SELECT Id, Name, Age, Comments, Row_Number() OVER(PARTITION BY Name, Age ORDER By Name)AS Rank FROM Customers) AS B WHERE Rank>1
+			
+			If you want to delete the duplicates:
+			
+			DELETE FROM users WHERE id IN (SELECT id/*, name, email*/ FROM users u1, users u2 WHERE u1.name = u2.name AND u1.email = u2.email AND u.id > u2.id )
+	11. 
+	
+	
+	
+	Spark:-
+	1. How to choose the no of executors in spark
+	2. what is rule based optimiser in spark
+	3. OrderBy vs SortBy
+	4. Windowing vs Analytics
+	5. How DAG works in spark
+	6. Explain performance tuning
+	7. repartition in spark
+	8. mapPartition
+	9. how to achieve skew in spark - suppose we have a 2- large DataSet & join together how to achive performance
+	10. BroadCast varriable vs cache in spoark
+	11. How to add columns in DataFrame
+	12. reduceBy vs groupBy
+	13. Using SparkDF- join the 2-table and some scenario
+	14. What are the transformation? how it works (Narrow vs wide)
+	15. map vs flatMap
+	16 what are the stages? how many stages are created from 2- sources (s1,s2)
+	17. task vs executors
+	18. how partition created in spark 
+	19. How Driver program works in spark -cluster? When Driver program created in spark
+	20. what is the use of DataFrame.
+	21. What is the Dynamic allocationin spark
+	22. How to drop duplicate column or rows in spark 
+	23. Coalse vs repartition in depth and why ? where?
+	
+	
+	
+	
+	1. Where you lounch the spark-shell
+		
+	
+	
+	1. What is Higher order function? write a program Squre of int using higher order function
+	2. WordCount program
+	3. Check word is there are not in the 500MB file
+	4. 2- highest salary
+	6. Companion object? uses
+	7. partialy applied function
+	8. what are the constructors in scala
+	9. val l = List(1,2,3,4,5)- find the valuses > 5 , and increament each element by 5 using functional progrsming
+				Sol: l.filter(x=>x>5).map(x=>x+5)
+	10. Singleton object vs Companion object
+	11. val m = Map(k1->"123", k2-> "abc") find the key  === keys & values
+	12. Nil - The empty list And None - None– non-existent values. Just to avoid null pointer exception.
+	13. foldLeft: it will fold the whole list (imagine rolling a piece of paper) into a single value, take in an initial value
+	    reduceLeft: reduce the whole list of integers into a single value.
+	
+	1. job is schecduled on daily bases or every day? How batch job scheduled 
+	2. How much GB of data is proceced every day?
+	3. what are the parameter used in maven to build scala/ how do you build
+	4. How performance is achived using partition / bucketing - how it will work
+	5. What are the compression you used for import and why (Snappy - uses)
+	6. How do you submit the job to YARN
+	7. Is there any primary key in hive? How to create primary key?
+	8. Why we need to mension the path of file while deploying the code in cluster
+	9. Can we update the bucket size for existing table?
+			CREATE EXTERNAL TABLE employee
+			(
+			  emp_id STRING, emp_name STRING,
+			  dept STRING, location STRING,
+			)
+			CLUSTERED BY(dept,location) SORTED BY(dept,location) INTO 15 BUCKETS ;
+
+			You can ALTER the number of BUCKETS using the ALTER TABLE command as
+
+			ALTER TABLE employee CLUSTERED BY(dept,location) SORTED BY(dept,location) INTO 20 BUCKETS;
+
+
+			The one major factor you need to consider here is that if you are using sampling queries on
+			a partitioned - bucketed tables, you need to keep in mind that the older partitions may have
+			different number of buckets where as the new partitions after the ALTER statement would have
+			a different number of buckets.
+	10.Why Sqoop already spark is there?
+	    Sqoop is just tool to import data into HDFS i.e. hadoop file system and export processed data from HDFS to any other RDBMS system.
+		Spark is in-memory computing platform which is very fast compared to MapReduce,
+		
+		Sqoop - Importing from RDBMS to HDFS and vice-versa.
+		Spark- is used to processing the data.
+		
+		Benefits of sqoop:
+		imports
+		exports
+		incremental imports
+		import all tables from a single database in one go
+	11. functional literals?
+	
+		
+		
+1.How will you improve the performance of a program in Hive?
+
+2. What is the precedence order in Hive configuration?
+3. How will you resolve an out of memory error while running a JOIN query
+-- In case of join query with large tables, we ahve a lots of data in memory. This can cause a out of memory error
+   We should try to put large table of data at right most side in a join query and smaller table at left side in Left Outer Join
+	
+	
+1. How to drop the duplicate column in data frame.
+ Sol: val new = df.drop(df.col("old.column"))
+				 //For exemple
+				val dataFrame = sparkSession.sql("SELECT .....")
+				dataFrame .distinct() //since 2.0.0
+				//or
+				dataFrame.dropDuplicates()
+				//or
+				dataFrame.dropDuplicates(colNames)
