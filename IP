@@ -1,0 +1,11 @@
+Name: SGH541RNLG.ctl.intranet
+Connection type: Direct connections only
+Port: 6129
+IPv4(s): 
+10.140.18.180
+IPv6(s): 
+Teredo: Not Found.
+PNRP Local:  n/a.
+PNRP Global: n/a.
+Global Cloud Status: 
+Invitation Count: 0
