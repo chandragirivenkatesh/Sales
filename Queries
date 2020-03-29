@@ -1,0 +1,22 @@
+SELECT esd.EXTERNAL_SYSTEM_ID, co.CUSTOMER_ORDER_ID, vi.PROCESS_INST_ID
+  FROM EXTERNAL_SYSTEM_DATA esd
+       LEFT OUTER JOIN customer_order co
+          ON esd.OWNER_ID = co.CUSTOMER_ORDER_ID
+       LEFT OUTER JOIN variable_instance vi
+          ON TO_CHAR (co.CUSTOMER_ORDER_ID) = vi.VARIABLE_VALUE
+ WHERE     vi.PROCESS_INST_ID IN (SELECT PROCESS_INSTANCE_ID
+                                    FROM activity_instance
+                                   WHERE     ACTIVITY_ID IN (SELECT work_id
+                                                               FROM WORK
+                                                              WHERE work_name =
+                                                                       'Activate TNs in CNUM')
+                                         AND STATUS_CD = 3
+                                         AND START_DT >= SYSDATE - 365)
+       AND co.CMPLT_DATE IS NULL
+       AND esd.EXTERNAL_SYSTEM_NAME = 'NETWORK_SYSTEM'
+       AND OWNER_TYPE = 'ORDER'
+
+select dn.directory_number,da.value from directory_number dn JOIN DN_ATTRIBUTE da ON da.DIRECTORY_NUMBER_ID = dn.DIRECTORY_NUMBER_ID
+where da.directory_number_id  in
+(select owner_id from customer_order_item where customer_order_id in( 1044376) and owner_type='DIRECTORY_NUMBER') 
+and NAME='NT_ORDER_ID'
