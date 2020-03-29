@@ -94,3 +94,5 @@ SELECT esd.EXTERNAL_SYSTEM_ID ENGG_ORDER,
          AND coi.OWNER_TYPE = 'DIRECTORY_NUMBER'
          AND da.NAME='NT_ORDER_ID'
 GROUP BY esd.EXTERNAL_SYSTEM_ID,coi.CUSTOMER_ORDER_ID,da.VALUE, vi.PROCESS_INST_ID
+
+https://ngwm.qintra.com/orderdashboard/?exclusiveModule=orderDashboard
