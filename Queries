@@ -118,3 +118,8 @@ SELECT directory_number_id
   FROM directory_number a
  WHERE directory_number_id IN (SELECT *
                                  FROM DN_ID)                                     
+
+
+select a.*,rowid from directory_number a where directory_number_id  in
+(select owner_id from customer_order_item where customer_order_id in( select owner_id from external_system_data a where EXTERNAL_SYSTEM_ID='&Order'
+) and owner_type='DIRECTORY_NUMBER') 
