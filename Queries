@@ -170,6 +170,13 @@ end if;
 
 END LOOP;
 
+
+select count(*) from directory_number where directory_number in(
+select directory_number from directory_number a where directory_number_id  in
+(select owner_id from customer_order_item where customer_order_id in( select owner_id from external_system_data a where EXTERNAL_SYSTEM_ID='181773953'
+) and owner_type='DIRECTORY_NUMBER') ) and DN_CLOSE_DATE is null and status_cd!=12
+
+
 dbms_output.put_line('Given list of TNs purged successfully from OMWF ');
 
 END;
