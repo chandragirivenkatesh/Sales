@@ -96,3 +96,25 @@ SELECT esd.EXTERNAL_SYSTEM_ID ENGG_ORDER,
 GROUP BY esd.EXTERNAL_SYSTEM_ID,coi.CUSTOMER_ORDER_ID,da.VALUE, vi.PROCESS_INST_ID
 
 https://ngwm.qintra.com/orderdashboard/?exclusiveModule=orderDashboard
+
+
+WITH DN_ID
+     AS (SELECT owner_id
+           FROM customer_order_item
+          WHERE     customer_order_id IN (SELECT owner_id
+                                            FROM external_system_data a
+                                           WHERE EXTERNAL_SYSTEM_ID = '&n1')
+                AND owner_type = 'DIRECTORY_NUMBER')
+SELECT directory_number_id
+  FROM directory_number
+ WHERE     directory_number IN (SELECT directory_number
+                                  FROM directory_number a
+                                 WHERE directory_number_id IN (SELECT *
+                                                                 FROM DN_ID))
+       AND DN_CLOSE_DATE IS NULL
+       AND status_cd != 12
+MINUS
+SELECT directory_number_id
+  FROM directory_number a
+ WHERE directory_number_id IN (SELECT *
+                                 FROM DN_ID)                                     
