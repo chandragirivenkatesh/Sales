@@ -123,3 +123,53 @@ SELECT directory_number_id
 select a.*,rowid from directory_number a where directory_number_id  in
 (select owner_id from customer_order_item where customer_order_id in( select owner_id from external_system_data a where EXTERNAL_SYSTEM_ID='&Order'
 ) and owner_type='DIRECTORY_NUMBER') 
+
+
+DECLARE
+
+i number;
+
+TYPE phone_no_tab IS VARRAY(1000) OF VARCHAR2(20);
+phone_nos phone_no_tab := phone_no_tab(&n
+);
+
+BEGIN
+for i in phone_nos.FIRST..phone_nos.LAST
+
+loop
+            if phone_nos.exists(i) then
+
+UPDATE CONTACT SET contact_close_date=sysdate,comments=comments || '' WHERE CONTACT_CLOSE_DATE IS NULL AND contact_id IN
+                (SELECT contact_id FROM contact WHERE owner_type='DIRECTORY_NUMBER' AND OWNER_ID=phone_nos(i));
+                
+                UPDATE equipment_dn_mapping SET mapping_close_date=sysdate,comments=comments ||''
+                WHERE directory_number_id=phone_nos(i);
+                
+                UPDATE dn_attribute SET mapping_close_date=sysdate,status_cd=12 
+                WHERE directory_number_id=phone_nos(i);
+                
+                UPDATE dn_feature_mapping SET mapping_close_date=sysdate,comments=comments ||''  
+                WHERE directory_number_id=phone_nos(i);
+                
+                UPDATE address_mapping SET mapping_close_date=sysdate,status_cd=12,comments=comments ||''  
+                WHERE owner_type='DIRECTORY_NUMBER' AND owner_id=phone_nos(i);
+                
+                UPDATE package_instance_dn_mapping SET mapping_close_date=sysdate,comments=comments ||''
+                WHERE DIRECTORY_NUMBER_ID=phone_nos(i);
+                                                
+                UPDATE directory_number SET dn_close_date=sysdate,status_cd=12,comments=comments ||'' 
+                WHERE directory_number_id=phone_nos(i);  
+
+                                UPDATE package_instance
+                                 SET pkg_instance_close_date = sysdate, status_cd = 12, mod_dt = SYSDATE, mod_usr = 'FALLOUT',comments=comments ||''
+                                                WHERE package_instance_id in (select package_instance_id from package_instance_dn_mapping where directory_number_id = phone_nos(i));
+
+
+
+end if;
+
+END LOOP;
+
+dbms_output.put_line('Given list of TNs purged successfully from OMWF ');
+
+END;
